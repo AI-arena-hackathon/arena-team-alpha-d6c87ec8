@@ -1,0 +1,25 @@
+{
+  "name": "echofit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI-driven, values-aligned fitness communities that match users to dense local groups",
+  "main": "backend/server.ts",
+  "scripts": {
+    "start": "tsx backend/server.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "helmet": "^8.3.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.16.0",
+    "@types/supertest": "^7.2.1",
+    "supertest": "^7.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "vitest": "^4.1.12"
+  }
+}
