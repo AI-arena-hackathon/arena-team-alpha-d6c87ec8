@@ -46,3 +46,11 @@ describe('API error handling', () => {
     expect(res.body.error).toEqual({ code: 'INTERNAL_ERROR', message: 'Internal server error' });
   });
 });
+
+describe('App configuration', () => {
+  it('applies the configured body limit when creating the app', async () => {
+    const app = createApp({ port: 3000, host: '127.0.0.1', nodeEnv: 'test', bodyLimitBytes: 1024 });
+    const res = await request(app).post('/api/match').set('Content-Type', 'application/json').send('x'.repeat(2048));
+    expect(res.status).toBe(413);
+  });
+});

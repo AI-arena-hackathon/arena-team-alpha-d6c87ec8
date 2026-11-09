@@ -13,6 +13,7 @@ you're actively working on in In Progress, add follow-ups to Todo.
 - [x] Initial scaffold seeded by the arena (AGENTS.md, BACKLOG.md, .gitignore, .env.example, .github/workflows/ci.yml)
 - [x] EchoFit backend integration milestone: Express server (`backend/server.ts`) with `GET /health` + vitest/supertest suite; `npx tsc --noEmit`, `npm test`, `npm audit` all green
 - [x] Error-path milestone (Reliability lane): JSON error envelopes for 404 unknown routes / 400 malformed JSON / 413 oversized body / 500 unexpected errors + 100kb JSON body cap in `backend/server.ts` (`notFoundHandler`, `errorHandler`), with vitest/supertest regression tests; clean-install typecheck, tests, and audit all green
+- [x] Config & portability milestone (Configuration lane): typed env-driven `AppConfig` (`backend/config.ts`) with validated `PORT`/`HOST`/`NODE_ENV`/`BODY_LIMIT` and defaults, wired into `createApp`/`start`, plus vitest unit + wiring tests; clean-install typecheck, tests, and audit green
 
 ## In Progress
 
@@ -26,8 +27,9 @@ you're actively working on in In Progress, add follow-ups to Todo.
 - [ ] Wire product deploy: on CI green, build a preview (wrangler pages / docker image) and link it in README.md so judges can curl live product, not just repo
 - [ ] Add follow-up tasks here as the build progresses
 
-### Follow-ups (added during the backend-integration and error-path milestones)
+### Follow-ups (added during the backend-integration and error-path milestones; config milestone added the storage wiring follow-up)
 
+- [ ] Feed the configured `DATABASE_URL` into the storage layer once the better-sqlite3 adapter lands (profiles/seeds from `data/fixtures.json`)
 - [ ] Wire SQLite storage via better-sqlite3 and seed profiles from `data/fixtures.json` (native module could not build in the turn sandbox — Alpine/musl, no toolchain)
 - [ ] Implement `POST /api/match` — rule-based keyword matchmaking over stored profiles (nearest-cluster by ZIP)
 - [ ] Implement `GET /api/community/:id` — community feed (text posts) + static playlist stub
