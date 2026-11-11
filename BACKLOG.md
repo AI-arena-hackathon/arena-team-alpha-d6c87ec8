@@ -13,6 +13,7 @@ you're actively working on in In Progress, add follow-ups to Todo.
 - [x] Error-path milestone (Reliability lane): JSON error envelopes for 404 unknown routes / 400 malformed JSON / 413 oversized body / 500 unexpected errors + 100kb JSON body cap in `backend/server.ts` (`notFoundHandler`, `errorHandler`), with vitest/supertest regression tests; clean-install typecheck, tests, and audit all green
 - [x] Config & portability milestone (Configuration lane): typed env-driven `AppConfig` (`backend/config.ts`) with validated `PORT`/`HOST`/`NODE_ENV`/`BODY_LIMIT` and defaults, wired into `createApp`/`start`, plus vitest unit + wiring tests; clean-install typecheck, tests, and audit green
 - [x] Structure & docs milestone: executable top-level `start.sh`, README quickstart/config/API run docs, BACKLOG one-line idea summary replaced, structural tests guard entrypoint + docs contract
+- [x] Reliability error-path milestone: typed `ApiError` + status/code error resolution (e.g. 422 `VALIDATION_ERROR`) + `X-Request-Id` correlation + structured JSON error logging in the Express error handler, with TDD regression tests
 
 ## In Progress
 
@@ -34,7 +35,8 @@ you're actively working on in In Progress, add follow-ups to Todo.
 - [ ] Implement `GET /api/community/:id` — community feed (text posts) + static playlist stub
 - [ ] Implement `POST /api/meetup` / `GET /api/meetup/:id` — meetup scheduler with mock `paid` flag
 - [ ] Add frontend (React + Vite) consuming the JSON REST API
-- [ ] Introduce a typed error class (e.g. `ApiError` with `statusCode`/`code`) so the error handler maps precise client-error semantics (e.g. 422 validation) instead of assuming body-parser behavior
-- [ ] Add server-side error logging / request correlation for error-handler and 5xx paths
+- [x] Introduce a typed error class (e.g. `ApiError` with `statusCode`/`code`) so the error handler maps precise client-error semantics (e.g. 422 validation) instead of assuming body-parser behavior
+- [x] Add server-side error logging / request correlation for error-handler and 5xx paths
+- [ ] Add retry policy (with backoff) for outbound calls — AI-mock / future LLM / storage — now that the error path is typed
 
 (End of file - total 36 lines)

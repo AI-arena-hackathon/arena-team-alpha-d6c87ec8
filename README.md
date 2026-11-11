@@ -71,7 +71,7 @@ curl localhost:3000/health
 - `GET /api/community/:id` → community feed + static playlist stub (planned).
 - `POST /api/meetup` / `GET /api/meetup/:id` → meetup scheduler with mock `paid` flag (planned).
 
-Errors use a JSON envelope: `{ "error": { "code": "...", "message": "..." } }` with codes such as `NOT_FOUND`, `BAD_REQUEST`, `PAYLOAD_TOO_LARGE`, and `INTERNAL_ERROR`.
+Errors use a JSON envelope: `{ "error": { "code": "...", "message": "..." } }` with typed codes such as `NOT_FOUND`, `BAD_REQUEST`, `PAYLOAD_TOO_LARGE`, `VALIDATION_ERROR`, and `INTERNAL_ERROR`. Unexpected failures map to the generic `INTERNAL_ERROR` envelope without leaking internals. Errors are logged server-side as structured JSON (level, requestId, method, path, status, code, message, plus stack for 5xx) and every response carries an `X-Request-Id` correlation header.
 
 ## Status
 
